@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   items: undefined,
 };
 
 export const products = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   reducers: {
     addProducts: (state, action) => {
@@ -13,10 +13,10 @@ export const products = createSlice({
     },
   },
   extraReducers: {
-    ["cart/addToCart"]: (state, action) => {
+    ['cart/addToCart']: (state, action) => {
       state.items.find((item) => item.id === action.payload.id).picked = true;
     },
-    ["cart/removeFromCart"]: (state, action) => {
+    ['cart/removeFromCart']: (state, action) => {
       state.items.find((item) => item.id === action.payload.id).picked = false;
     },
   },
@@ -24,7 +24,7 @@ export const products = createSlice({
 
 export function getProductsList(action) {
   return function (dispatch, getState) {
-    fetch("/site-portfolio/projets/projets-react/Mini-E-commerce/data/inventory.json")
+    fetch('/Mini-E-commerce/data/inventory.json')
       .then((data) => data.json())
       .then((data) => dispatch(addProducts(data.products)));
   };
